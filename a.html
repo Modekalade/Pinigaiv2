@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Išlaidų pasiskirstymas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        h2 {
+            text-align: center;
+        }
+        input[type="number"] {
+            width: 80px;
+            padding: 5px;
+            font-size: 1em;
+        }
+    </style>
+</head>
+<body>
+    <h2>Išlaidų pasiskirstymas</h2>
+
+    <label for="tavoAlga">Tavo alga (€): </label>
+    <input type="number" id="tavoAlga" value="900" oninput="calculate()">
+    <br>
+    <label for="zmonosAlga">Žmonos alga (€): </label>
+    <input type="number" id="zmonosAlga" value="900" oninput="calculate()">
+    <br><br>
+
+    <table>
+        <tr>
+            <th>Kategorija</th>
+            <th>Tavo Išlaidos (€)</th>
+            <th>Žmonos Išlaidos (€)</th>
+        </tr>
+        <tr>
+            <td>Nuoma</td>
+            <td><input type="number" id="nuomaTavo" value="200" oninput="calculate()"></td>
+            <td><input type="number" id="nuomaZmonos" value="0" oninput="calculate()"></td>
+        </tr>
+        <tr>
+            <td>Maistas</td>
+            <td><input type="number" id="maistasTavo" value="130" oninput="calculate()"></td>
+            <td><input type="number" id="maistasZmonos" value="270" oninput="calculate()"></td>
+        </tr>
+        <tr>
+            <td>Kirpykla</td>
+            <td><input type="number" id="kirpyklaTavo" value="10" oninput="calculate()"></td>
+            <td><input type="number" id="kirpyklaZmonos" value="0" oninput="calculate()"></td>
+        </tr>
+        <tr>
+            <td>Internetas</td>
+            <td><input type="number" id="internetasTavo" value="13" oninput="calculate()"></td>
+            <td><input type="number" id="internetasZmonos" value="0" oninput="calculate()"></td>
+        </tr>
+        <tr>
+            <td>Investavimas</td>
+            <td><input type="number" id="investavimasTavo" value="30" oninput="calculate()"></td>
+            <td><input type="number" id="investavimasZmonos" value="0" oninput="calculate()"></td>
+        </tr>
+        <tr>
+            <td>Telefono sąskaitos</td>
+            <td><input type="number" id="telefonasTavo" value="15" oninput="calculate()"></td>
+            <td><input type="number" id="telefonasZmonos" value="20" oninput="calculate()"></td>
+        </tr>
+        <tr>
+            <td>Mokesčiai</td>
+            <td><input type="number" id="mokesciaiTavo" value="125" oninput="calculate()"></td>
+            <td><input type="number" id="mokesciaiZmonos" value="0" oninput="calculate()"></td>
+        </tr>
+        <tr>
+            <td>Mašinos paskola</td>
+            <td><input type="number" id="masinaTavo" value="70" oninput="calculate()"></td>
+            <td><input type="number" id="masinaZmonos" value="0" oninput="calculate()"></td>
+        </tr>
+        <tr>
+            <td>Pūkė</td>
+            <td><input type="number" id="pukeTavo" value="0" oninput="calculate()"></td>
+            <td><input type="number" id="pukeZmonos" value="50" oninput="calculate()"></td>
+        </tr>
+        <tr>
+            <td>Vaistai</td>
+            <td><input type="number" id="vaistaiTavo" value="0" oninput="calculate()"></td>
+            <td><input type="number" id="vaistaiZmonos" value="50" oninput="calculate()"></td>
+        </tr>
+        <tr>
+            <td>Buitis</td>
+            <td><input type="number" id="buitisTavo" value="0" oninput="calculate()"></td>
+            <td><input type="number" id="buitisZmonos" value="50" oninput="calculate()"></td>
+        </tr>
+        <tr>
+            <td>Prenumeratos</td>
+            <td><input type="number" id="prenumeratosTavo" value="0" oninput="calculate()"></td>
+            <td><input type="number" id="prenumeratosZmonos" value="35" oninput="calculate()"></td>
+        </tr>
+        <tr>
+            <td>Kuras</td>
+            <td><input type="number" id="kurasTavo" value="0" oninput="calculate()"></td>
+            <td><input type="number" id="kurasZmonos" value="100" oninput="calculate()"></td>
+        </tr>
+        <tr>
+            <td>Nenumatytos išlaidos</td>
+            <td><input type="number" id="nenumatytosTavo" value="0" oninput="calculate()"></td>
+            <td><input type="number" id="nenumatytosZmonos" value="0" oninput="calculate()"></td>
+        </tr>
+        <tr>
+            <th>Iš viso</th>
+            <th id="tavoIslaidos">593</th>
+            <th id="zmonosIslaidos">575</th>
+        </tr>
+        <tr>
+            <th>Pajamos</th>
+            <th id="tavoPajamos">900</th>
+            <th id="zmonosPajamos">900</th>
+        </tr>
+        <tr>
+            <th>Likutis per mėn</th>
+            <th id="tavoLikutis">307</th>
+            <th id="zmonosLikutis">325</th>
+        </tr>
+        <tr>
+            <th>Likutis per 12 mėn</th>
+            <th id="tavoLikutis12">3684</th>
+            <th id="zmonosLikutis12">3900</th>
+        </tr>
+        <tr>
+            <th>Bendra likučio suma per 12 mėn</th>
+            <th colspan="2" id="bendraLikutis12">7584</th>
+        </tr>
+        <tr>
+            <th>Dalinant į 3 dalis</th>
+            <th id="tavoDalis">102</th>
+            <th id="zmonosDalis">108</th>
+        </tr>
+        <tr>
+            <th>Dalinant į 3 dalis per 12 mėn</th>
+            <th id="tavoDalis12">1224</th>
+            <th id="zmonosDalis12">1296</th>
+        </tr>
+        <tr>
+            <th>Bendra dalis per 12 mėn dalinant į 3</th>
+            <th colspan="2" id="bendraDalis12">2520</th>
+        </tr>
+    </table>
+
+    <script>
+        // Funkcija išsaugoti visus įvestus duomenis
+        function saveData() {
+            // Išsaugome pagrindines algas
+            localStorage.setItem("tavoAlga", document.getElementById("tavoAlga").value);
+            localStorage.setItem("zmonosAlga", document.getElementById("zmonosAlga").value);
+            
+            // Išsaugome visas kategorijas
+            const categories = [
+                "nuomaTavo", "maistasTavo", "kirpyklaTavo", "internetasTavo", "investavimasTavo", "telefonasTavo",
+                "mokesciaiTavo", "masinaTavo", "pukeTavo", "vaistaiTavo", "buitisTavo", "prenumeratosTavo", "kurasTavo", "nenumatytosTavo",
+                "nuomaZmonos", "maistasZmonos", "kirpyklaZmonos", "internetasZmonos", "investavimasZmonos", "telefonasZmonos",
+                "mokesciaiZmonos", "masinaZmonos", "pukeZmonos", "vaistaiZmonos", "buitisZmonos", "prenumeratosZmonos", "kurasZmonos", "nenumatytosZmonos"
+            ];
+
+            categories.forEach(function(category) {
+                localStorage.setItem(category, document.getElementById(category).value);
+            });
+        }
+
+        // Funkcija užkrauti visus duomenis
+        function loadData() {
+            // Užkrauname algas
+            if (localStorage.getItem("tavoAlga")) {
+                document.getElementById("tavoAlga").value = localStorage.getItem("tavoAlga");
+            }
+            if (localStorage.getItem("zmonosAlga")) {
+                document.getElementById("zmonosAlga").value = localStorage.getItem("zmonosAlga");
+            }
+
+            // Užkrauname kategorijas
+            const categories = [
+                "nuomaTavo", "maistasTavo", "kirpyklaTavo", "internetasTavo", "investavimasTavo", "telefonasTavo",
+                "mokesciaiTavo", "masinaTavo", "pukeTavo", "vaistaiTavo", "buitisTavo", "prenumeratosTavo", "kurasTavo", "nenumatytosTavo",
+                "nuomaZmonos", "maistasZmonos", "kirpyklaZmonos", "internetasZmonos", "investavimasZmonos", "telefonasZmonos",
+                "mokesciaiZmonos", "masinaZmonos", "pukeZmonos", "vaistaiZmonos", "buitisZmonos", "prenumeratosZmonos", "kurasZmonos", "nenumatytosZmonos"
+            ];
+
+            categories.forEach(function(category) {
+                if (localStorage.getItem(category)) {
+                    document.getElementById(category).value = localStorage.getItem(category);
+                }
+            });
+        }
+
+        // Apskaičiavimas
+        function calculate() {
+            const tavoAlga = parseFloat(document.getElementById("tavoAlga").value) || 0;
+            const zmonosAlga = parseFloat(document.getElementById("zmonosAlga").value) || 0;
+
+            const tavoIslaidos = [
+                "nuomaTavo", "maistasTavo", "kirpyklaTavo", "internetasTavo", "investavimasTavo", "telefonasTavo",
+                "mokesciaiTavo", "masinaTavo", "pukeTavo", "vaistaiTavo", "buitisTavo", "prenumeratosTavo", "kurasTavo", "nenumatytosTavo"
+            ].map(id => parseFloat(document.getElementById(id).value) || 0).reduce((a, b) => a + b, 0);
+
+            const zmonosIslaidos = [
+                "nuomaZmonos", "maistasZmonos", "kirpyklaZmonos", "internetasZmonos", "investavimasZmonos", "telefonasZmonos",
+                "mokesciaiZmonos", "masinaZmonos", "pukeZmonos", "vaistaiZmonos", "buitisZmonos", "prenumeratosZmonos", "kurasZmonos", "nenumatytosZmonos"
+            ].map(id => parseFloat(document.getElementById(id).value) || 0).reduce((a, b) => a + b, 0);
+
+            // Apskaičiuojame likučius ir kitus duomenis
+            const tavoLikutis = tavoAlga - tavoIslaidos;
+            const zmonosLikutis = zmonosAlga - zmonosIslaidos;
+
+            const tavoLikutis12 = tavoLikutis * 12;
+            const zmonosLikutis12 = zmonosLikutis * 12;
+
+            const bendraLikutis12 = (tavoLikutis12 + zmonosLikutis12).toFixed(2);
+
+            const tavoDalis = (tavoLikutis / 3).toFixed(2);
+            const zmonosDalis = (zmonosLikutis / 3).toFixed(2);
+
+            const tavoDalis12 = (tavoLikutis12 / 3).toFixed(2);
+            const zmonosDalis12 = (zmonosLikutis12 / 3).toFixed(2);
+
+            const bendraDalis12 = (parseFloat(tavoDalis12) + parseFloat(zmonosDalis12)).toFixed(2);
+
+            // Rodyti rezultatus
+            document.getElementById("tavoIslaidos").innerText = tavoIslaidos.toFixed(2);
+            document.getElementById("zmonosIslaidos").innerText = zmonosIslaidos.toFixed(2);
+            document.getElementById("tavoPajamos").innerText = tavoAlga;
+            document.getElementById("zmonosPajamos").innerText = zmonosAlga;
+            document.getElementById("tavoLikutis").innerText = tavoLikutis.toFixed(2);
+            document.getElementById("zmonosLikutis").innerText = zmonosLikutis.toFixed(2);
+            document.getElementById("tavoLikutis12").innerText = tavoLikutis12.toFixed(2);
+            document.getElementById("zmonosLikutis12").innerText = zmonosLikutis12.toFixed(2);
+            document.getElementById("bendraLikutis12").innerText = bendraLikutis12;
+            document.getElementById("tavoDalis").innerText = tavoDalis;
+            document.getElementById("zmonosDalis").innerText = zmonosDalis;
+            document.getElementById("tavoDalis12").innerText = tavoDalis12;
+            document.getElementById("zmonosDalis12").innerText = zmonosDalis12;
+            document.getElementById("bendraDalis12").innerText = bendraDalis12;
+
+            // Išsaugoti duomenis
+            saveData();
+        }
+
+        // Puslapio įkrovimo metu užkrauti duomenis
+        window.onload = function() {
+            loadData();
+            calculate();
+        };
+    </script>
+</body>
+</html>
